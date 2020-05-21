@@ -1,0 +1,2 @@
+D:\Workspace\CppProjects\games\TripleX\x64\Debug\TripleX.exe
+D:\Workspace\CppProjects\games\TripleX\x64\Debug\TripleX.pdb

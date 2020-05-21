@@ -2,19 +2,59 @@
 //
 
 #include <iostream>
+#include <ctime>
 
-int main()
+using namespace std;
+
+void PrintIntroduction(int difficulty)
 {
-    std::cout << "Hello World!\n";
+    cout << "\n You are a secret agent breaking into a LEVEL " << difficulty;
+    cout << "\n secure server room ... \n Enter the correct code to continue ... \n\n";
+
 }
 
-// Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
-// Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
+bool gameLoop(int difficulty)
+{
+    PrintIntroduction(difficulty);
 
-// Astuces pour bien démarrer : 
-//   1. Utilisez la fenêtre Explorateur de solutions pour ajouter des fichiers et les gérer.
-//   2. Utilisez la fenêtre Team Explorer pour vous connecter au contrôle de code source.
-//   3. Utilisez la fenêtre Sortie pour voir la sortie de la génération et d'autres messages.
-//   4. Utilisez la fenêtre Liste d'erreurs pour voir les erreurs.
-//   5. Accédez à Projet > Ajouter un nouvel élément pour créer des fichiers de code, ou à Projet > Ajouter un élément existant pour ajouter des fichiers de code existants au projet.
-//   6. Pour rouvrir ce projet plus tard, accédez à Fichier > Ouvrir > Projet et sélectionnez le fichier .sln.
+    //generate code
+
+    const int A = rand() % difficulty + difficulty;
+    const int B = rand() % difficulty + difficulty;
+    const int C = rand() % difficulty + difficulty;
+
+    cout << "there are three numbres in the code .... \n ";
+    cout << "the codes add-up to : " << A + B + C << endl;
+    cout << "the codes multiply to give : " << A * B * C << endl;
+
+    //Store Player Guesses
+    int GuessA, GuessB, GuessC;
+    cin >> GuessA >> GuessB >> GuessC;
+
+    // check if player input is correct
+
+    if ((A + B + C == GuessA + GuessB + GuessC) & (A * B * C == GuessA * GuessB * GuessC))
+    {
+        cout << "well Played Agent! Keep Going! \n\n";
+        return true;
+    }
+    else
+    {
+        cout << "\n Sorry you entered the wrong codes :( \n";
+        return false;
+    }
+
+}
+int main()
+{
+    srand(time(NULL));//create a new random sequence based on current time
+    int levelDifficulty = 1;
+    int maxLevel = 5;
+    bool b;
+    // Game loop
+        while (levelDifficulty <= maxLevel)
+        {
+            b = gameLoop(levelDifficulty);
+            if (b) levelDifficulty++;
+        }
+}
